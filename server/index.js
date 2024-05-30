@@ -79,7 +79,8 @@ app.use(session({
   secret: 'wge8d239bwd93rkskb',   // change this random string, should be a secret value
   resave: false,
   saveUninitialized: false,
-  cookie: { httpOnly: true, secure: process.env.NODE_ENV === 'production' ? true : false },
+  //cookie: { httpOnly: true, secure: (process.env.NODE_ENV === 'production' ? true : false) },
+  cookie: { httpOnly: false },
 }));
 
 // then, init passport
@@ -320,6 +321,10 @@ app.get('/api/sessions/current', (req, res) => {  if(req.isAuthenticated()) {
 
 
 /*** Other express-related instructions ***/
+
+const DEBUG ={cookie: { httpOnly: true, secure: process.env.NODE_ENV === 'production' ? true : false }};
+console.log('DEBUG: ',JSON.stringify(DEBUG));
+
 
 // Activate the server
 app.listen(port, () => {
