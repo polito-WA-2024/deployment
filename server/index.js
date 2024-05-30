@@ -80,7 +80,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   //cookie: { httpOnly: true, secure: (process.env.NODE_ENV === 'production' ? true : false) },
-  cookie: { httpOnly: false },
+  cookie: { httpOnly: false, secure: true },
 }));
 
 // then, init passport
