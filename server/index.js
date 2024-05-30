@@ -73,6 +73,8 @@ const isLoggedIn = (req, res, next) => {
   return res.status(401).json({ error: 'Not authenticated'});
 }
 
+app.set('trust proxy', 1);
+
 // set up the session
 app.use(session({
   // by default, Passport uses a MemoryStore to keep track of the sessions
