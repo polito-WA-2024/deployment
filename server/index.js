@@ -23,7 +23,7 @@ const port = process.env.PORT || 3001;
 
 const corsOptions = {
   //origin: 'http://localhost:5173',
-  origin: process.env.ORIGIN,
+  origin: process.env.ORIGIN || 'http://localhost:5173',
   credentials: true,
 };
 app.use(cors(corsOptions));
@@ -73,7 +73,8 @@ const isLoggedIn = (req, res, next) => {
   return res.status(401).json({ error: 'Not authenticated'});
 }
 
-app.set('trust proxy', 1);
+if (process.env.NODE_ENV === 'production')
+  app.set('trust proxy', 1);
 
 // set up the session
 app.use(session({
